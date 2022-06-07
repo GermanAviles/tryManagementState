@@ -1,0 +1,7 @@
+<p>home works!</p>
+
+
+<div class="home">
+  <p *ngIf="(loading$ | async)"> cargando...</p>
+  <app-list [pokemons]="pokemons$ | async"></app-list>
+</div>
