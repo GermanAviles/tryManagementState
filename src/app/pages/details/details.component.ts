@@ -8,15 +8,9 @@ import { PokemonService } from '../../shared/services/pokemon/pokemon.service';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(
-    private pokemonService: PokemonService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.pokemonService.pokemons().subscribe( (response) => {
-      console.log('RESPONSE: ', response);
-      // this.pokemons = response.results;
-    });
   }
 
 }

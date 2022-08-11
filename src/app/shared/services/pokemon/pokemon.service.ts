@@ -11,7 +11,7 @@ export class PokemonService {
 
   constructor( private http: HttpClient ) { }
 
-  pokemons(): Observable<any> {
+  getPokemons(): Observable<any> {
     const url = `${environment.api}${ endpoints.pokemon }?limit=30`;
     return this.http.get<any>(url);
   }

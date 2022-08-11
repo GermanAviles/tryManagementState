@@ -6,8 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { StoreModule } from '@ngrx/store';
-import { pokemonReducer } from './store/pokemon/pokemon.reducer';
 import { ROOT_REDUCER } from './store/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { PokemonEffects } from './store/pokemon/pokemon.effect';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ROOT_REDUCER } from './store/app.state';
     AppRoutingModule,
     PagesModule,
     HttpClientModule,
-    StoreModule.forRoot( ROOT_REDUCER )
+    StoreModule.forRoot( ROOT_REDUCER ),
+    EffectsModule.forRoot([PokemonEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadPokemons, loadedPokemons } from '../../store/pokemon/pokemon.actions';
+import { loadPokemons } from '../../store/pokemon/pokemon.actions';
 import { AppState } from '../../store/app.state';
-import { delay, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { selectPokemonLoading, selectPokemonList } from '../../store/pokemon/pokemon.selector';
-import { PokemonService } from '../../shared/services/pokemon/pokemon.service';
 import { Pokemon } from '../../shared/models/pokemon.model';
 
 @Component({
@@ -19,7 +18,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private pokemonService: PokemonService
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +26,11 @@ export class HomeComponent implements OnInit {
     this.loading$ = this.store.select( selectPokemonLoading );
     this.pokemons$ = this.store.select( selectPokemonList );
 
-    this.pokemonService.pokemons().pipe( map( (res) => res.results), delay(3000) ).subscribe(
-      (response: Pokemon[] ) => {
-        this.store.dispatch( loadedPokemons( { pokemons: response } ) )
-      }
-    );
+    // this.pokemonService.pokemons().pipe( map( (res) => res.results), delay(3000) ).subscribe(
+    //   (response: Pokemon[] ) => {
+    //     this.store.dispatch( loadedPokemons( { pokemons: response } ) )
+    //   }
+    // );
   }
 
 }
